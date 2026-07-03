@@ -158,15 +158,15 @@ export default function ProductDetailPage() {
               {/* Thumbnail Strip */}
               {product.images.length > 1 && (
                 <div className="flex space-x-3">
-                  {product.images.map((img: string, idx: number) => ( 
+                  {product.images.map((image: string, imageIndex: number) => (
                     <button
-                      key={idx}
-                      onClick={() => setActiveImage(idx)}
+                      key={imageIndex}
+                      onClick={() => setActiveImage(imageIndex)}
                       className={`w-18 h-18 rounded-xl overflow-hidden border-2 transition-all ${
-                        activeImage === idx ? 'border-gold' : 'border-transparent'
+                        activeImage === imageIndex ? 'border-gold' : 'border-transparent'
                       }`}
                     >
-                      <img src={img} alt="" className="w-full h-full object-cover" />
+                      <img src={image} alt="" className="w-full h-full object-cover" />
                     </button>
                   ))}
                 </div>
