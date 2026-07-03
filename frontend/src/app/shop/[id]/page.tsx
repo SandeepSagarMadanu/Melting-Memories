@@ -231,7 +231,7 @@ export default function ProductDetailPage() {
                   Fragrance: <span className="text-gold font-bold">{selectedFragrance}</span>
                 </label>
                 <div className="flex flex-wrap gap-2">
-                  {product.fragrances.map(f => (
+                  {product.fragrances.map((f: string) => (
                     <button
                       key={f}
                       onClick={() => setSelectedFragrance(f)}
@@ -253,7 +253,7 @@ export default function ProductDetailPage() {
                   Color: <span className="text-gold font-bold">{selectedColor}</span>
                 </label>
                 <div className="flex flex-wrap gap-2">
-                  {product.colors.map(c => (
+                  {product.colors.map((c: string) => (
                     <button
                       key={c}
                       onClick={() => setSelectedColor(c)}
