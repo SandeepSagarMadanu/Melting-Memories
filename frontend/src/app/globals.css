@@ -1,0 +1,452 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FAF7F2;
+  --foreground: #2B2B2B;
+  --primary-gold: #D4AF37;
+  --secondary-ivory: #FAF7F2;
+  --accent-charcoal: #2B2B2B;
+  --highlight-rose: #E8CFCF;
+}
+
+@theme {
+  --color-gold: #D4AF37;
+  --color-gold-hover: #b8962c;
+  --color-gold-light: #f5edd0;
+  --color-ivory: #FAF7F2;
+  --color-charcoal: #2B2B2B;
+  --color-charcoal-light: #444444;
+  --color-rose: #E8CFCF;
+  --color-rose-light: #f7eded;
+
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Outfit", Arial, Helvetica, sans-serif;
+
+  --animate-gold-shimmer: gold-shimmer 2s infinite linear;
+  --animate-float: float 4s ease-in-out infinite;
+
+  @keyframes gold-shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
+html,
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: "Outfit", Arial, sans-serif;
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-luxury-serif {
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+/* Glassmorphism utility classes */
+.glass {
+  background: rgba(250, 247, 242, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.glass-dark {
+  background: rgba(43, 43, 43, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #D4AF37 0%, #F3E5AB 50%, #C5A028 100%);
+}
+
+.gold-text-gradient {
+  background: linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #AA7C11 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-border {
+  border-image: linear-gradient(to right, #B8860B, #D4AF37, #AA7C11) 1;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF7F2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D4AF37;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B8860B;
+}
+
+/* Hide scrollbars for sliders */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Shimmer card placeholders */
+.shimmer {
+  background: linear-gradient(90deg, #f3ece1 25%, #eadeca 50%, #f3ece1 75%);
+  background-size: 200% 100%;
+  animation: shimmer-swipe 1.5s infinite;
+}
+
+@keyframes shimmer-swipe {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ─── Scroll-Reveal Animation Keyframes ─────────────────────────────────────── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(36px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-48px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(48px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes goldPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(212, 175, 55, 0.15);
+  }
+}
+
+/* Base reveal state — elements are invisible until JS adds .is-visible */
+.reveal {
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none !important;
+}
+
+/* Directional presets */
+.reveal-up {
+  transform: translateY(40px);
+}
+
+.reveal-down {
+  transform: translateY(-32px);
+}
+
+.reveal-left {
+  transform: translateX(-50px);
+}
+
+.reveal-right {
+  transform: translateX(50px);
+}
+
+.reveal-scale {
+  transform: scale(0.88);
+}
+
+/* Stagger delays */
+.delay-100 {
+  transition-delay: 100ms;
+}
+
+.delay-200 {
+  transition-delay: 200ms;
+}
+
+.delay-300 {
+  transition-delay: 300ms;
+}
+
+.delay-400 {
+  transition-delay: 400ms;
+}
+
+.delay-500 {
+  transition-delay: 500ms;
+}
+
+.delay-600 {
+  transition-delay: 600ms;
+}
+
+/* Gold pulse on hover (for founder cards etc.) */
+.hover-gold-pulse:hover {
+  animation: goldPulse 1.4s ease-in-out;
+}
+
+/* Extended Scroll-Reveal Stagger Delays */
+.delay-50  { transition-delay: 50ms; }
+.delay-150 { transition-delay: 150ms; }
+.delay-250 { transition-delay: 250ms; }
+.delay-350 { transition-delay: 350ms; }
+.delay-450 { transition-delay: 450ms; }
+.delay-700 { transition-delay: 700ms; }
+.delay-800 { transition-delay: 800ms; }
+.reveal-scale-up { transform: scale(0.92) translateY(24px); }
+
+/* Luxurious selection highlight */
+::selection {
+  background: rgba(212, 175, 55, 0.25);
+  color: #2B2B2B;
+}
+
+/* Warm Blended Color Gradients for sections */
+.warm-gradient-section {
+  background: linear-gradient(
+    160deg,
+    #FAF7F2 0%,
+    #FDF5F5 30%,
+    #FAF7F2 60%,
+    #FDF9F0 100%
+  );
+}
+
+.warm-radial-section {
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    #FDF9F0 0%,
+    #FAF7F2 45%,
+    #FDF5F5 100%
+  );
+}
+
+/* Animated gradient divider between sections */
+.gradient-divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #D4AF37, #E8CFCF, #D4AF37, transparent);
+  background-size: 200% 100%;
+  animation: gradientSweep 3s ease infinite;
+}
+
+/* Custom scrollbar track/thumb styling */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #D4AF37, #E8CFCF);
+  border-radius: 4px;
+}
+
+/* Premium animation keyframes */
+@keyframes goldGlow {
+  0%, 100% { box-shadow: 0 0 12px 2px rgba(212,175,55,0.15), 0 4px 20px rgba(212,175,55,0.1); }
+  50%       { box-shadow: 0 0 28px 6px rgba(212,175,55,0.30), 0 8px 30px rgba(212,175,55,0.2); }
+}
+@keyframes gradientSweep {
+  0%   { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+@keyframes blobDrift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(20px, -15px) scale(1.05); }
+  66%       { transform: translate(-15px, 10px) scale(0.97); }
+}
+@keyframes blobDrift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(-25px, 12px) scale(1.04); }
+  66%       { transform: translate(18px, -8px) scale(0.98); }
+}
+@keyframes shimmerSweep {
+  0%   { left: -100%; }
+  100% { left: 150%; }
+}
+@keyframes bounceSoft {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+@keyframes pulseCTA {
+  0%, 100% { box-shadow: 0 4px 20px rgba(212,175,55,0.25); }
+  50%       { box-shadow: 0 8px 35px rgba(212,175,55,0.55), 0 0 0 6px rgba(212,175,55,0.1); }
+}
+@keyframes reviewFade {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes starPop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+@keyframes heroWord {
+  from { opacity: 0; transform: translateY(30px) skewY(3deg); }
+  to   { opacity: 1; transform: translateY(0) skewY(0); }
+}
+
+/* Continuous background blob & button glows */
+.animate-gold-glow    { animation: goldGlow 2.5s ease-in-out infinite; }
+.animate-cta-pulse    { animation: pulseCTA 2.5s ease-in-out infinite; }
+.animate-blob         { animation: blobDrift  10s ease-in-out infinite; }
+.animate-blob-2       { animation: blobDrift2 13s ease-in-out infinite; }
+.animate-bounce-soft  { animation: bounceSoft 2s ease-in-out infinite; }
+.animate-review-fade  { animation: reviewFade 0.5s ease-out both; }
+.animate-star-pop     { animation: starPop 0.3s ease-out both; }
+
+/* Subtle shimmer overlays for premium buttons */
+.btn-shimmer { position: relative; overflow: hidden; }
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 50%; height: 100%;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+.btn-shimmer:hover::after { animation: shimmerSweep 0.65s ease-out forwards; }
+
+/* Elegant hover underline slide-in for headers */
+.nav-link-animated { position: relative; }
+.nav-link-animated::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 100%; height: 1.5px;
+  background: #D4AF37;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+.nav-link-animated:hover::after { transform: scaleX(1); }
+
+/* Footer border with animated color sweep */
+.footer-gradient-top { position: relative; }
+.footer-gradient-top::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #B8860B, #D4AF37, #E8CFCF, #D4AF37, #B8860B);
+  background-size: 200% 100%;
+  animation: gradientSweep 4s ease infinite;
+}
+
+/* Card hover scaling and warm gold/rose drop-shadows */
+.card-warm-hover { transition: box-shadow 0.35s ease, transform 0.35s ease; }
+.card-warm-hover:hover {
+  box-shadow: 0 20px 50px rgba(212,175,55,0.12), 0 8px 24px rgba(232,207,207,0.15);
+  transform: translateY(-5px);
+}
+
+/* FAQ accordion dynamic expansion */
+.faq-content { overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease; }
+.faq-content.open   { max-height: 400px; opacity: 1; }
+.faq-content.closed { max-height: 0;     opacity: 0; }
+
+/* Elegant focus gold glow rings on forms */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.18) !important;
+  border-color: rgba(212, 175, 55, 0.7) !important;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
