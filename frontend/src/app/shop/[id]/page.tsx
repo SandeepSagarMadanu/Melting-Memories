@@ -158,7 +158,7 @@ export default function ProductDetailPage() {
               {/* Thumbnail Strip */}
               {product.images.length > 1 && (
                 <div className="flex space-x-3">
-                  {product.images.map((img, idx) => (
+                  {product.images.map((img: string, idx: number) => (
                     <button
                       key={idx}
                       onClick={() => setActiveImage(idx)}
